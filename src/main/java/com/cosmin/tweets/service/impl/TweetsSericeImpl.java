@@ -1,5 +1,6 @@
 package com.cosmin.tweets.service.impl;
 
+import com.cosmin.tweets.converter.HashtagEntityToHashtagConverter;
 import com.cosmin.tweets.converter.StatusToTweetConverter;
 import com.cosmin.tweets.converter.TweetsListToTweetsResponseConverter;
 import com.cosmin.tweets.dto.TweetsRequest;
@@ -42,6 +43,9 @@ public class TweetsSericeImpl implements TweetsService {
 
     @Autowired
     private TweetsListToTweetsResponseConverter tweetsListToTweetsResponseConverter;
+
+    @Autowired
+    private HashtagEntityToHashtagConverter hashtagEntityToHashtagConverter;
 
     @Override
     public TweetsResponse getTweets() {
@@ -97,9 +101,9 @@ public class TweetsSericeImpl implements TweetsService {
     }
 
     private void saveHashtags(Status tweet) {
-        Arrays.stream(tweet.getHashtagEntities()).map(hashtagEntity ->
-            Hashtag.builder().id(hashtagEntity.getText()).count(1).build()
-        ).collect(Collectors.toList()).forEach(hashtag -> {
+        Arrays.stream(tweet.getHashtagEntities())
+                .map(hashtagEntity -> hashtagEntityToHashtagConverter.convert(hashtagEntity))
+                .collect(Collectors.toList()).forEach(hashtag -> {
             Optional<Hashtag> optionalHashtag = hashtagRepository.findById(hashtag.getId());
             if (optionalHashtag.isPresent()) {
                 optionalHashtag.get().incrementCount();
