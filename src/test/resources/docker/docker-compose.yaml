@@ -1,0 +1,10 @@
+version: '3'
+services:
+  postgres-db:
+    image: postgres:9.6.6-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=tweets
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password

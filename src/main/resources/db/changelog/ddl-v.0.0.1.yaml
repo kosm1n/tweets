@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01_tweets_create_schema
+      author: cosmin valer cotirlea
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS tweets
+  - changeSet:
+      id: 02_create_tweet_table
+      author: cosmin
+      changes:
+        - createTable:
+            schemaName: tweets
+            tableName: tweet
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKeyName: tweet_pkey
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: text
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: location
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: validation
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: insert_timestamp
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_timestamp
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 02_create_hashtag_table
+      author: cosmin
+      changes:
+        - createTable:
+            schemaName: tweets
+            tableName: hashtag
+            columns:
+              - column:
+                  name: id
+                  type: varchar(50)
+                  constraints:
+                    primaryKeyName: hashtag_pkey
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: count
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: insert_timestamp
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: update_timestamp
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false

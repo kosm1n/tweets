@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tweets
+    username: postgres
+    password: password
+server:
+  port: 8080
+com:
+  cosmin:
+    tweets:
+      config:
+        oauth:
+          consumerKey: *
+          consumerSecret: *
+          accessToken: *
+          accessTokenSecret: *
