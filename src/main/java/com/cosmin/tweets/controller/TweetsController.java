@@ -2,6 +2,7 @@ package com.cosmin.tweets.controller;
 
 import com.cosmin.tweets.dto.TweetsRequest;
 import com.cosmin.tweets.dto.TweetsResponse;
+import com.cosmin.tweets.error.ErrorHandler;
 import com.cosmin.tweets.model.Hashtag;
 import com.cosmin.tweets.service.TweetsService;
 import org.springframework.beans.factory.annotation.Autowired;

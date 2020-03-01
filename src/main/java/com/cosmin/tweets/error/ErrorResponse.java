@@ -1,4 +1,4 @@
-package com.cosmin.tweets.dto;
+package com.cosmin.tweets.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

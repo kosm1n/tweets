@@ -1,6 +1,6 @@
 package com.cosmin.tweets.controller;
 
-import com.cosmin.tweets.dto.ErrorResponse;
+import com.cosmin.tweets.error.ErrorResponse;
 import com.cosmin.tweets.dto.TweetsRequest;
 import com.cosmin.tweets.dto.TweetsResponse;
 import com.cosmin.tweets.service.TweetsService;

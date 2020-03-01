@@ -1,6 +1,5 @@
-package com.cosmin.tweets.controller;
+package com.cosmin.tweets.error;
 
-import com.cosmin.tweets.dto.ErrorResponse;
 import com.cosmin.tweets.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
