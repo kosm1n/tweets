@@ -16,6 +16,7 @@ Create a new `Run Configuration` (`Run -> Edit configurations...`) with the foll
 | _Main class_              | _com.orangebank.TweetsApplication_   
 | _Use classpath of module_ | _clans-app_ 
 | _JRE_                     | _&gt; 11_      
+```
 
 ## From Maven
 
