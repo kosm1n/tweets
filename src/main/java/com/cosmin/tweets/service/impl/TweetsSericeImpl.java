@@ -5,6 +5,7 @@ import com.cosmin.tweets.converter.StatusToTweetConverter;
 import com.cosmin.tweets.converter.TweetsListToTweetsResponseConverter;
 import com.cosmin.tweets.dto.TweetsRequest;
 import com.cosmin.tweets.dto.TweetsResponse;
+import com.cosmin.tweets.exceptions.NotFoundException;
 import com.cosmin.tweets.model.Hashtag;
 import com.cosmin.tweets.model.Tweet;
 import com.cosmin.tweets.repository.HashtagRepository;
@@ -13,9 +14,7 @@ import com.cosmin.tweets.service.TweetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import twitter4j.*;
 
 import javax.transaction.Transactional;
@@ -64,7 +63,7 @@ public class TweetsSericeImpl implements TweetsService {
 
     @Override
     public TweetsResponse updateTweet(TweetsRequest request) {
-        Tweet tweet = tweetRepository.findById(request.getTweetId()).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Tweet with id '" + request.getTweetId() + "' not found"));
+        Tweet tweet = tweetRepository.findById(request.getTweetId()).orElseThrow(() -> new NotFoundException("Tweet with id '" + request.getTweetId() + "' not found"));
         tweet.setValidation(request.getValidation());
         return tweetsListToTweetsResponseConverter.convert(Arrays.asList(tweetRepository.save(tweet)));
     }

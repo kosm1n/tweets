@@ -1,5 +1,6 @@
 package com.cosmin.tweets.controller;
 
+import com.cosmin.tweets.dto.ErrorResponse;
 import com.cosmin.tweets.dto.TweetsRequest;
 import com.cosmin.tweets.dto.TweetsResponse;
 import com.cosmin.tweets.service.TweetsService;
@@ -19,6 +20,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,6 +57,11 @@ public class TwitterControllerTest {
 
         // assert
         resultActions.andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
+        String contentAsString = resultActions.andReturn().getResponse().getContentAsString();
+        ErrorResponse response = objectMapper.readValue(contentAsString, ErrorResponse.class);
+        assertEquals("Status should be: 400 BAD REQUEST.", Integer.valueOf(HttpStatus.BAD_REQUEST.value()), response.getStatus());
+        assertTrue("Message should contain: ", response.getMessage().contains("tweetId must not be null"));
+        assertTrue("Message should contain: ", response.getMessage().contains("validation must not be null"));
 
     }
 

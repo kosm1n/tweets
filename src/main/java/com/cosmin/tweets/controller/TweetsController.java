@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 @RestController
-public class TweetsController {
+public class TweetsController extends ErrorHandler {
 
     @Autowired
     private Twitter twitter;
