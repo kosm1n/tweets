@@ -78,7 +78,8 @@ public class TweetsSericeImpl implements TweetsService {
                 result = twitter.search(query);
                 tweetsConsumed = result.getTweets().stream().map(tweet -> {
                     Tweet tweetSaved = null;
-                    if(tweet.getUser().getFollowersCount() > 1500 && tweet.getLang().equals("es")) {
+                    if(tweet.getUser().getFollowersCount() > 1500 &&
+                            (tweet.getLang().equals("es") || tweet.getLang().equals("it") || tweet.getLang().equals("fr"))) {
                         if (tweetRepository.findById(tweet.getId()).isEmpty()) {
                             tweetSaved = tweetRepository.save(statusToTweetConverter.convert(tweet));
                             saveHashtags(tweet);

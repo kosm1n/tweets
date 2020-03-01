@@ -40,7 +40,7 @@ com.cosmin.tweets.config.oauth:
 
 ## Second step
 
-Call [/tweets/consume] with a valid twitter user name to gatter some tweets.
+Call [/tweets/consume] with a valid twitter user name to gather some tweets.
 
 ## Third step
 
